@@ -2,10 +2,10 @@
 #include <string.h>
 #include <stdbool.h>
 
-int BRAZIL = "BRA";
-int MAR_DEL_PLATA = "MDQ";
-int MENDOZA= "MZA";
-int BARILOCHE = "BRC";
+char BRAZIL[3] = "BRA";
+char MAR_DEL_PLATA[3] = "MDQ";
+char MENDOZA[3] = "MZA";
+char BARILOCHE[3] = "BRC";
 
 int IMPORTE_BRAZIL = 25000;
 int IMPORTE_MAR_DEL_PLATA = 14000;
@@ -15,7 +15,7 @@ int SEGURO_NINOS=  2000;
 int RECARGO_TARJETA = 0.05;
 
 int CAPACIDAD_MAXIMA = 60;
-int MAX_PASAJEROS = 100;
+
 
 int cant_pasajeros;
 
