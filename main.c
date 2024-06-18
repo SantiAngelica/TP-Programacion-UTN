@@ -1,6 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+int BRAZIL = "BRA";
+int MAR_DEL_PLATA = "MDQ";
+int MENDOZA= "MZA";
+int BARILOCHE = "BRC";
+
+int IMPORTE_BRAZIL = 25000;
+int IMPORTE_MAR_DEL_PLATA = 14000;
+int IMPORTE_MENDOZA=  19000;
+int IMPORTE_BARILOCHE = 23000;
+int SEGURO_NINOS=  2000;
+int RECARGO_TARJETA = 0.05;
+
+int CAPACIDAD_MAXIMA = 60;
+int MAX_PASAJEROS = 100;
+
+int cant_pasajeros;
+
+
+
+
+
 int main() {
     int opcion;
-    cargar_pasajeros();
+    printf("Ingrese la cantidad de pasajeros que va a ingresar\n");
+    scanf("%d", &cant_pasajeros);
+    char pasajeros[cant_pasajeros][5][50];
+
+    cargar_pasajeros(pasajeros);
     do {
         printf("\nMenú de opciones:\n");
         printf("1. Mostrar lista de pasajeros ordenada por Apellido y Nombre\n");
@@ -14,19 +43,19 @@ int main() {
         
         switch (opcion) {
             case 1:
-                mostrar_lista_ordenada_por_apellido();
+                mostrar_lista_ordenada_por_apellido(pasajeros);
                 break;
             case 2:
-                mostrar_lista_ordenada_por_destino();
+                mostrar_lista_ordenada_por_destino(pasajeros);
                 break;
             case 3:
-                mostrar_lista_de_destinos();
+                mostrar_lista_de_destinos(pasajeros);
                 break;
             case 4:
-                buscar_por_pasajero();
+                buscar_por_pasajero(pasajeros);
                 break;
             case 5:
-                mostrar_estadisticas();
+                mostrar_estadisticas(pasajeros);
                 break;
             case 6:
                 printf("Gracias por utilizar Viaje Mágico.\n");
