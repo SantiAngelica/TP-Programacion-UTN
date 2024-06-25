@@ -18,13 +18,20 @@ int CAPACIDAD_MAXIMA = 60;
 
 int cant_pasajeros;
 
+// Función para convertir una cadena a mayúsculas
+void convertir_a_mayusculas(char str[]) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = toupper(str[i]);
+    }
+}
+
 
 int main() {
     int opcion;
     printf("Ingrese la cantidad de pasajeros que va a ingresar\n");
     scanf("%d", &cant_pasajeros);
 
-    // mostrar_tabla_destinos();
+    // git pumostrar_tabla_destinos();
 
     do {
         printf("\nMenú de opciones:\n");
@@ -47,13 +54,11 @@ int main() {
                 printf("Funcionalidad no implementada.\n");
                 break;
             case 3:
-                // Implementación pendiente si se requiere
                 printf("Destinos.\n");
                 mostrar_tabla_destinos();
                 break;
             case 4:
-                // Implementación pendiente si se requiere
-                printf("Funcionalidad no implementada.\n");
+                buscar_por_pasajero(pasajeros);
                 break;
             case 5:
                 // Implementación pendiente si se requiere
@@ -81,4 +86,28 @@ void mostrar_tabla_destinos() {
     printf("%s\t| %s\t\t| $%d\n", MENDOZA, "MENDOZA", IMPORTE_MENDOZA);
     printf("%s\t| %s\t\t| $%d\n", BARILOCHE, "BARILOCHE", IMPORTE_BARILOCHE);
     printf("-------------------------------------\n");
+}
+
+void buscar_por_pasajero(char pasajeros[][5][50]) {
+    char nombre_buscar[50];
+    printf("Ingrese el nombre del pasajero a buscar: ");
+    scanf(" %[^\n]", nombre_buscar);
+    convertir_a_mayusculas(nombre_buscar); // Convertir el nombre a mayúsculas
+
+    bool encontrado = false;
+    for (int i = 0; i < cant_pasajeros; i++) {
+        char nombre_pasajero[50];
+        strcpy(nombre_pasajero, pasajeros[i][0]);
+        convertir_a_mayusculas(nombre_pasajero); // Convertir el nombre del pasajero a mayúsculas
+
+        if (strcmp(nombre_buscar, nombre_pasajero) == 0) {
+            printf("Pasajero encontrado: %s, Destino: %s\n", pasajeros[i][0], pasajeros[i][1]);
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Pasajero no encontrado.\n");
+    }
 }
