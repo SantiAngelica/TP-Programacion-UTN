@@ -20,10 +20,12 @@ int CAPACIDAD_MAXIMA = 60;
 int COLUMNAS = 5;
 int cant_pasajeros;
 
-
+//ORDENA Y MUESTRA LISTA ORDENADA POR APELLIDO Y NOMBRE
 void mostrar_lista_ordenada_por_apellido_nombre(char (*pasajeros)[5][50]){
     int i,j, pos_menor;
     char aux[50], menor[100], mayor[100];
+
+    //COMPARA EL VALOR MENOR CON TODO LOS VALORES PARA DEFINIR CUAL ES EL MENOR
     for ( i = 0; i < cant_pasajeros - 1; i++)
     {
         pos_menor = i;
@@ -45,17 +47,18 @@ void mostrar_lista_ordenada_por_apellido_nombre(char (*pasajeros)[5][50]){
             strcpy(pasajeros[pos_menor][j],aux);
         }
     }
+    
+    
+    //REMPLAZA EL VALOR MENOR EN LA POSICION DEL VALOR COMPARADO
     for ( i = 0; i < cant_pasajeros; i++)
     {
         printf("%s %s, DNI: %s, Edad: %s, Destino: %s\n", pasajeros[i][1], pasajeros[i][2],pasajeros[i][0],pasajeros[i][3],pasajeros[i][4]);
         printf("------------\n");
     }
-    
-
-
 }
 
 
+//RECIBE UN ARRAY CON 4 VALORES Y DEVUELVE EL INDICE DEL MAYOR
 int devolver_mayor(float (*arreglo)[4]){
     int i;
     int pos_mayor = 0;
@@ -70,6 +73,7 @@ int devolver_mayor(float (*arreglo)[4]){
 }
 
 
+//RECIBE EL ARRAY CON LAS ESTADISTICAS Y LO MUESTRA
 void mostrar(float (*estadisticas)[4], char *mayor){
     printf("El %.2f%% eligio Brazil como destino, y el %.2f%% es menor de 5 anos\n",
     estadisticas[0][2], estadisticas[0][3]);
@@ -84,13 +88,19 @@ void mostrar(float (*estadisticas)[4], char *mayor){
 }
 
 
+//CALCULA ESTADISTICAS DE LOS PASAJEROS
 void mostrar_estadisticas(char (*pasajeros)[5][50]){
     //ESTADISTICAS:
-    //INDICE 0: BRZ
-    //INDCE 1: MDQ
-    //INDICE 2: MZA
-    // INDICE 3: BRC
-    //CANTIDAD - CANTIDAD DE MENORES - PORC. - PORC. DE MENORES
+    //FILA 0: BRZ
+    //FILA 1: MDQ
+    //FILA 2: MZA
+    // FILA 3: BRC
+
+    //COLUMNA 0: CANTIDAD
+    //COLUMNA 1: CANT. MENORES
+    //COLUMNA 2: PORC. PERSONAS
+    //CANTIAD 3: POR. DE MENORES
+
     float estadisticas[4][4] = {
         { 0, 0, 0, 0 },
         { 0, 0, 0, 0 },
@@ -100,6 +110,9 @@ void mostrar_estadisticas(char (*pasajeros)[5][50]){
     int i;
     int pos_mayor;
     char mayor[14];
+    
+    
+    
     //CALCULO PERSONAS X DESTINO
     for ( i = 0; i < cant_pasajeros; i++)
     {
@@ -139,6 +152,10 @@ void mostrar_estadisticas(char (*pasajeros)[5][50]){
             }
         }
     }
+
+
+
+
     //OBTENGO EL INDICE DEL DESTINO CON MAS PERSONAS
     pos_mayor = devolver_mayor(estadisticas);
     switch (pos_mayor)
@@ -156,13 +173,17 @@ void mostrar_estadisticas(char (*pasajeros)[5][50]){
         strcpy(mayor,"Bariloche");
         break;
     }
+
+
+    //CALCULO DE PORCENTAJE DE PASAJEROS Y PORCENTAJE DE MENORES
     for ( i = 0; i < 4; i++)
     {
         estadisticas[i][2] = (estadisticas[i][0] / cant_pasajeros)*100;
         estadisticas[i][3] = (estadisticas[i][1] / estadisticas[i][0])*100;
     }
-    mostrar(estadisticas, mayor);
 
+
+    mostrar(estadisticas, mayor);
 }
 
 
