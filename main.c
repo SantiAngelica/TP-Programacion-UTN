@@ -579,37 +579,7 @@ int main()
 
     char pasajeros[cant_pasajeros][6][50];
     cargar_pasajeros(pasajeros);
-    // {
-    //     {"45490269", "Perez", "Juan", "4", "MDQ", },
-    //     {"87654321", "Gomez", "Ana", "3", "MDQ"},
-    //     {"23456789", "Martinez", "Carlos", "2", "MZA"},
-    //     {"98765432", "Lopez", "Maria", "1", "BRC"},
-    //     {"34567890", "Garcia", "Lucia", "22", "BRA"},
-    //     {"87654322", "Sanchez", "Miguel", "27", "MDQ"},
-    //     {"45678901", "Fernandez", "Sofia", "32", "MZA"},
-    //     {"98765431", "Rodriguez", "Luis", "40", "BRC"},
-    //     {"56789012", "Gonzalez", "Laura", "26", "BRA"},
-    //     {"87654320", "Hernandez", "Jorge", "29", "MDQ"},
-    //     {"67890123", "Ramirez", "Elena", "33", "MZA"},
-    //     {"98765430", "Torres", "Pablo", "31", "BRC"},
-    //     {"78901234", "Ruiz", "Marta", "21", "BRA"},
-    //     {"87654319", "Morales", "Diego", "34", "MDQ"},
-    //     {"89012345", "Ortiz", "Camila", "24", "MZA"},
-    //     {"98765429", "Silva", "Ricardo", "38", "BRC"},
-    //     {"90123456", "Castro", "Natalia", "27", "BRA"},
-    //     {"87654318", "Mendez", "Alejandro", "29", "MDQ"},
-    //     {"01234567", "Vega", "Julia", "26", "MZA"},
-    //     {"98765428", "Rojas", "Marcos", "36", "BRC"},
-    //     {"12345679", "Reyes", "Sandra", "23", "BRA"},
-    //     {"87654317", "Vargas", "Victor", "37", "MDQ"},
-    //     {"23456780", "Medina", "Paula", "22", "MZA"},
-    //     {"98765427", "Cruz", "Sergio", "35", "BRC"},
-    //     {"34567891", "Pena", "Valeria", "30", "BRA"},
-    //     {"87654316", "Herrera", "Adrian", "28", "MDQ"},
-    //     {"45678912", "Molina", "Lorena", "34", "MZA"},
-    //     {"98765426", "Campos", "Eduardo", "33", "BRC"},
-    //     {"56789023", "Nunez", "Gabriela", "31", "BRA"},
-    //     {"87654315", "Roman", "Nicolas", "25", "MDQ"}};
+    
 
     do
     {
