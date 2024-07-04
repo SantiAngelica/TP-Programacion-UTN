@@ -22,6 +22,15 @@ int CAPACIDAD_MAXIMA = 60;
 int COLUMNAS = 6;
 int cant_pasajeros;
 
+//  INTEGRANTES
+// FRANCO PASCUA
+// EZEQUIEL NATALE
+// JUAN SOSA
+// SANTIAGO ANGELICA
+
+
+
+
 
 
 void escribirRenglon(){
@@ -254,6 +263,9 @@ void convertir_a_mayusculas(char str[])
     }
 }
 
+
+
+// Subproceso para mostrar los destinos con sus precios y sus codigos
 void mostrar_tabla_destinos()
 {
     printf("\nTabla de Codigos e Importes de Viaje:\n");
@@ -267,6 +279,9 @@ void mostrar_tabla_destinos()
     escribirRenglon();
 }
 
+
+
+// Subproces para busca un pasajero por su numero de DNI
 void buscar_por_pasajero(char (*pasajeros)[6][50])
 {
     int i = 0, indice_DNI;
@@ -278,6 +293,8 @@ void buscar_por_pasajero(char (*pasajeros)[6][50])
         scanf("%s", dni);
         banderaDNI = Valida_DNI(dni);
     } while (banderaDNI == 1);
+    
+    // Busqueda secuencial de pasajero por DNI
     do
     {
         if (strcmp(pasajeros[i][0], dni) == 0)
@@ -292,6 +309,8 @@ void buscar_por_pasajero(char (*pasajeros)[6][50])
         i = i + 1;
     } while (!encontrado && i < cant_pasajeros);
     escribirRenglon();
+
+    // Muestra de pasajero en caso de que sea encontrado
     if (encontrado)
     {
         
@@ -315,8 +334,10 @@ void buscar_por_pasajero(char (*pasajeros)[6][50])
 
 // PARTE FRANCO
 
-int Valida_DNI(char *dni)
-{
+
+// Funcion que recibe un numero de DNI y devuelve 1 si es erroneo y 0 si es correcto
+int Valida_DNI(char *dni){
+
     int erroneo = 0;
     int longi = strlen(dni);
     int DNI = atoi(dni);
@@ -343,8 +364,10 @@ int Valida_DNI(char *dni)
     return erroneo;
 }
 
-void Mostrar_destinos(char (*pasajeros)[6][50], int cantPasaj)
-{
+
+
+// SUbproceso para calcular CANTIDAD DE PASAJEROS y TOTAL DE IMPORTA por destino 
+void Mostrar_destinos(char (*pasajeros)[6][50], int cantPasaj){
     float sum_bra = 0;
     float sum_BRC = 0;
     float sum_MZA = 0;
@@ -405,8 +428,9 @@ void Mostrar_destinos(char (*pasajeros)[6][50], int cantPasaj)
 
 // PARTE JUAN
 
-void cargar_pasajeros(char (*pasajeros)[6][50])
-{
+
+// Sub proceso para cargar los pasajeros, dentro del arreglo 'pasajeros'
+void cargar_pasajeros(char (*pasajeros)[6][50]){
     int cuposBRA = 0, cuposMDQ = 0, cuposMZA = 0, cuposBRC = 0;
     int total_pasajeros;
     int banderaDNI;
@@ -416,6 +440,7 @@ void cargar_pasajeros(char (*pasajeros)[6][50])
     escribirRenglon();
     for (int i = 0; i < cant_pasajeros; i++)
     {
+        //CARGA DE DATOS   -DNI- -APELLIDO- -NOMBRE- -EDAD- -CODIGO DESTINO-
         do
         {
             printf("Ingrese su DNI: ");
@@ -434,13 +459,15 @@ void cargar_pasajeros(char (*pasajeros)[6][50])
 
         printf("Ingrese Codigo de Destino (BRA, MDQ, MZA, BRC): ");
         scanf(" %s", pasajeros[i][4]);
+        
 
+        // VALIDACION DEL CODIGO DE DESTINO INGRESADO
         while (strcmp(pasajeros[i][4], "BRA") != 0 && strcmp(pasajeros[i][4], "MDQ") != 0 && strcmp(pasajeros[i][4], "MZA") != 0 && strcmp(pasajeros[i][4], "BRC") != 0)
         {
             printf("Codigo erroneo, ingrese de nuevo(BRA, MDQ, MZA, BRC): ");
             scanf(" %s", pasajeros[i][4]);
         }
-
+        // Calculo y evaluacion de los cupos maximos por destino (60)
         if (strcmp(pasajeros[i][4], "BRA") == 0)
         {
             if (cuposBRA > 60)
@@ -496,6 +523,7 @@ void cargar_pasajeros(char (*pasajeros)[6][50])
 
         if (aprobado)
         {
+            // INGRESO DE FORMA DE PAGO (TARJETA DE CREDITO: 5% RECARGO , EFECTIVO) Y VALIDACION
             do
             {
                 printf("Forma de pago:\n1 - Tarjeta de credito(5%% de recargo)\n2 - Efectivo\n");
@@ -506,6 +534,7 @@ void cargar_pasajeros(char (*pasajeros)[6][50])
                 }
             } while (formaPago<1 || formaPago>2);
            
+            //CALCULO Y MUESTRA DEL IMPORTA FINAL A PAGAR
             if (atoi(pasajeros[i][3]) < 5)
             {
                 importe = importe + SEGURO_NINOS;
@@ -531,8 +560,9 @@ void cargar_pasajeros(char (*pasajeros)[6][50])
     }
 }
 
-void ordenar_por_destino(char (*pasajeros)[COLUMNAS][50])
-{
+
+//Sub proceso que ordena el arreglo 'pasajeros' en forma alfabetica por    codigo destino-apellido-nombre
+void ordenar_por_destino(char (*pasajeros)[COLUMNAS][50]){
     int pos_menor, i, j;
     char menor[200], mayor[200], aux[COLUMNAS][50];
 
@@ -542,6 +572,7 @@ void ordenar_por_destino(char (*pasajeros)[COLUMNAS][50])
 
         for (j = i + 1; j < cant_pasajeros; j++)
         {
+            //Concatena codigo destino-apellido-nombre
             strcpy(menor, pasajeros[pos_menor][4]); 
             strcat(menor, pasajeros[pos_menor][1]); 
             strcat(menor, pasajeros[pos_menor][2]); 
@@ -554,7 +585,7 @@ void ordenar_por_destino(char (*pasajeros)[COLUMNAS][50])
                 pos_menor = j; 
             }
         }
-
+        // Cambio del valor menor por la posicion evaluada
         for (j = 0; j < COLUMNAS; j++)
         {
             strcpy(aux[j], pasajeros[i][j]);
@@ -563,6 +594,7 @@ void ordenar_por_destino(char (*pasajeros)[COLUMNAS][50])
         }
     }
     escribirRenglon();
+    // Muestra del arreglo 'pasajeros' ordenado
     for (i = 0; i < cant_pasajeros; i++)
     {
         printf("Codigo destino: %s, Apellido y nombre: %s %s, DNI: %s, Edad: %s, Importe: $%s\n",
@@ -571,8 +603,10 @@ void ordenar_por_destino(char (*pasajeros)[COLUMNAS][50])
     }
 }
 
-int main()
-{
+
+
+// Menu principal
+int main(){
     int opcion;
     printf("Ingrese la cantidad de pasajeros que va a ingresar\n");
     scanf("%d", &cant_pasajeros);
